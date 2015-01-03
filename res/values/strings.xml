@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">亿修哥</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">设置</string>
+    <string name="order_by_check_cost_title">查看费用</string>
+    <string name="order_by_phone_title">电话预约</string>
+    <string name="order_by_web_title">在线预约</string>
+    <drawable name="view_border_line">#e6e6e6</drawable>
+    <drawable name="base_pressed">#fafafa</drawable>
+    <drawable name="base_unpressed">#ffffff</drawable>
+    
+</resources>

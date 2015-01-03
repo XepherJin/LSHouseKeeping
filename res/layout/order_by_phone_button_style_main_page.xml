@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_page_layout_selector"
+    android:orientation="horizontal" >
+    
+    <ImageView 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@android:drawable/ic_menu_upload_you_tube"
+        android:layout_weight="1.0"
+        android:scaleType="center"/>
+    
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:gravity="center"
+        android:layout_weight="0.8"
+        android:layout_marginRight="20dp"
+        android:layout_height="fill_parent">
+        
+        <TextView 
+            android:id="@+id/order_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="电话预约"
+            android:textColor="#666666"
+            android:textSize="18sp"/>
+        
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/order_text"
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            android:textColor="@color/repair_content_text_color"
+            android:text="通过电话与我们预约服务"/>
+        
+    </RelativeLayout>
+
+</LinearLayout>

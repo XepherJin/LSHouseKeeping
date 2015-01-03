@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.retropoktan.lshousekeeping.MainActivity" >
+    
+    <android.support.v4.view.ViewPager
+        android:id="@+id/ad_viewpager_main_page"
+        android:layout_width="fill_parent"
+        android:layout_weight="0.7"
+        android:layout_height="wrap_content" >
+    </android.support.v4.view.ViewPager>
+    
+    <LinearLayout 
+        android:id="@+id/button_select_main_page"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.3"
+        android:orientation="vertical">
+        
+        <include layout="@layout/order_by_phone_button_style_main_page"
+            android:id="@+id/order_by_phone_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"/>
+        
+        <View 
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:background="#666666"/>
+        
+        <include layout="@layout/order_by_web_button_style_main_page"
+            android:id="@+id/order_by_web_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"/>
+        
+        <View 
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:background="#666666"/>
+        
+        <include layout="@layout/order_by_check_cost_button_style_main_page"
+            android:id="@+id/order_by_check_cost_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"/>
+        
+    </LinearLayout>
+
+</LinearLayout>

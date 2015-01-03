@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="TitleBg">#eaeeef</color>
+    <color name="TitleText">#879394</color>
+    <color name="TitlePressed">#d4d8da</color>
+    <color name="ButtonText">#ffffff</color>
+    <color name="MenuTextColor">#dfdfe0</color>
+    <color name="FormColor">#1abc9c</color>
+    <color name="FormBg">#d4d8da</color>
+    <color name="ButtonRedUnable">#e39186</color>
+    <color name="ButtonRedPressed">#f52d10</color>
+    <color name="ButtonRedNormal">#d42f17</color>
+    <color name="ButtonGreenUnable">#60e2d5</color>
+    <color name="ButtonGreenPressed">#0aebd4</color>
+    <color name="ButtonGreenNormal">#14d3c0</color>
+    <color name="Theme_color">#ff8400</color>
+    <color name="repair_content_text_color">#999999</color>
+
+</resources>
