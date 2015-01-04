@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity{
     	orderByPhoneLayout.setOnClickListener(new MainPageButtonOnClickListener());
     	orderByWebLayout.setOnClickListener(new MainPageButtonOnClickListener());
     	orderByCheckCostLayout.setOnClickListener(new MainPageButtonOnClickListener());
-    	rightBtn.setImageDrawable(getResources().getDrawable(R.drawable.ic_launcher));
+    	rightBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_launcher));
     	rightBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override

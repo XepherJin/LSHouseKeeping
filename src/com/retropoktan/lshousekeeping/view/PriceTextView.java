@@ -25,4 +25,8 @@ public class PriceTextView extends TextView{
 	private void setPrice(String string) {
 		setText(Html.fromHtml("<font color=\'#ff8400\'>" + string + "</font><font color=\'#666666\'> 元</font>"));
 	}
+	
+	private void setTotalPrice(String string) {
+		setText("</font><font color=\'#666666\'>总价： </font><font color=\'#ff8400\'>" + string + "</font><font color=\'#666666\'> 元</font>");
+	}
 }

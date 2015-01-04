@@ -44,6 +44,7 @@ public class OrderByCheckCostActivity extends BaseActivity{
 		}
 		SimpleAdapter simpleAdapter = new SimpleAdapter(this, mData, R.layout.web_order_item, new String[]{"Image", "Text"}, new int[]{R.id.web_order_item_imageview, R.id.web_order_item_textview});
 		topGridView.setAdapter(simpleAdapter);
+		topGridView.setOnItemClickListener(new TopGridViewOnClickListener());
 	}
 	
 	class TopGridViewOnClickListener implements OnItemClickListener{
@@ -52,6 +53,8 @@ public class OrderByCheckCostActivity extends BaseActivity{
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
 			// TODO Auto-generated method stub
+			Intent intent = new Intent(OrderByCheckCostActivity.this, DetailRepairActivity.class);
+			startActivity(intent);
 		}
 		
 	}

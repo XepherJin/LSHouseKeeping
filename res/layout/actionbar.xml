@@ -58,7 +58,7 @@
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/title_rightbtn"
             android:layout_width="50dp"
             android:layout_height="45dp"

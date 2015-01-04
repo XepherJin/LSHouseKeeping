@@ -15,6 +15,7 @@
     <color name="ButtonGreenPressed">#0aebd4</color>
     <color name="ButtonGreenNormal">#14d3c0</color>
     <color name="Theme_color">#ff8400</color>
+    <color name="Theme_color_pressed">#ff6400</color>
     <color name="repair_content_text_color">#999999</color>
 
 </resources>

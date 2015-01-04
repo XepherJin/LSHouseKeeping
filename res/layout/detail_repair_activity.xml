@@ -7,8 +7,8 @@
     <ListView 
         android:id="@+id/detail_repair_listview"
         android:layout_width="fill_parent"
-        android:divider="@drawable/view_border_line"
-        android:dividerHeight="1dp"
+        android:divider="@null"
+        android:listSelector="@android:color/transparent"
         android:layout_height="fill_parent">
     </ListView>
 

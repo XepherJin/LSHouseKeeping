@@ -869,14 +869,15 @@ containing a value of this type.
         public static final int FormColor=0x7f060008;
         public static final int MenuTextColor=0x7f060007;
         public static final int Theme_color=0x7f060010;
+        public static final int Theme_color_pressed=0x7f060011;
         public static final int TitleBg=0x7f060003;
         public static final int TitlePressed=0x7f060005;
         public static final int TitleText=0x7f060004;
-        public static final int abc_search_url_text_holo=0x7f060012;
+        public static final int abc_search_url_text_holo=0x7f060013;
         public static final int abc_search_url_text_normal=0x7f060000;
         public static final int abc_search_url_text_pressed=0x7f060002;
         public static final int abc_search_url_text_selected=0x7f060001;
-        public static final int repair_content_text_color=0x7f060011;
+        public static final int repair_content_text_color=0x7f060012;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1095,13 +1096,16 @@ containing a value of this type.
         public static final int back_actionbar=0x7f020057;
         public static final int back_actionbar_pressed=0x7f020058;
         public static final int back_actionbar_selector=0x7f020059;
-        public static final int base_pressed=0x7f02005f;
-        public static final int base_unpressed=0x7f020060;
+        public static final int base_pressed=0x7f020062;
+        public static final int base_unpressed=0x7f020063;
         public static final int flag_cancel=0x7f02005a;
         public static final int ic_launcher=0x7f02005b;
-        public static final int main_page_layout_selector=0x7f02005c;
-        public static final int title_back=0x7f02005d;
-        public static final int view_border_line=0x7f02005e;
+        public static final int launcher_button_background=0x7f02005c;
+        public static final int launcher_button_background_unpressed=0x7f02005d;
+        public static final int launcher_button_pressed=0x7f02005e;
+        public static final int main_page_layout_selector=0x7f02005f;
+        public static final int title_back=0x7f020060;
+        public static final int view_border_line=0x7f020061;
     }
     public static final class id {
         public static final int action_bar=0x7f09001c;
@@ -1115,9 +1119,9 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f090002;
         public static final int action_menu_presenter=0x7f090003;
         public static final int action_mode_close_button=0x7f090024;
-        public static final int action_settings=0x7f09005a;
+        public static final int action_settings=0x7f09005d;
         public static final int activity_chooser_view_content=0x7f090025;
-        public static final int ad_viewpager=0x7f090059;
+        public static final int ad_viewpager=0x7f09005c;
         public static final int ad_viewpager_main_page=0x7f09004c;
         public static final int always=0x7f09000f;
         public static final int beginning=0x7f090016;
@@ -1152,12 +1156,12 @@ containing a value of this type.
         public static final int none=0x7f090019;
         public static final int normal=0x7f090007;
         public static final int order_by_check_cost_layout=0x7f090050;
-        public static final int order_by_phone_item_imageview=0x7f090052;
-        public static final int order_by_phone_item_name_textview=0x7f090053;
-        public static final int order_by_phone_item_phone_textview=0x7f090054;
+        public static final int order_by_phone_item_imageview=0x7f090055;
+        public static final int order_by_phone_item_name_textview=0x7f090056;
+        public static final int order_by_phone_item_phone_textview=0x7f090057;
         public static final int order_by_phone_layout=0x7f09004e;
         public static final int order_by_web_layout=0x7f09004f;
-        public static final int order_text=0x7f090051;
+        public static final int order_text=0x7f090054;
         public static final int progress_circular=0x7f090004;
         public static final int progress_horizontal=0x7f090005;
         public static final int radio=0x7f09002f;
@@ -1180,6 +1184,8 @@ containing a value of this type.
         public static final int showTitle=0x7f09000d;
         public static final int split_action_bar=0x7f09001e;
         public static final int submit_area=0x7f090039;
+        public static final int submit_layout=0x7f090051;
+        public static final int submit_order_button=0x7f090053;
         public static final int tabMode=0x7f090008;
         public static final int title=0x7f09002b;
         public static final int title_choose_city_layout=0x7f09003e;
@@ -1188,12 +1194,13 @@ containing a value of this type.
         public static final int title_rightbtn=0x7f090041;
         public static final int title_view=0x7f09003c;
         public static final int top_action_bar=0x7f090020;
-        public static final int top_gridview=0x7f090058;
+        public static final int top_gridview=0x7f09005b;
+        public static final int total_price_textview=0x7f090052;
         public static final int up=0x7f090021;
         public static final int useLogo=0x7f09000e;
-        public static final int web_order_item_imageview=0x7f090055;
-        public static final int web_order_item_textview=0x7f090056;
-        public static final int web_order_scrollview=0x7f090057;
+        public static final int web_order_item_imageview=0x7f090058;
+        public static final int web_order_item_textview=0x7f090059;
+        public static final int web_order_scrollview=0x7f09005a;
         public static final int withText=0x7f090013;
     }
     public static final class integer {
@@ -1250,13 +1257,14 @@ containing a value of this type.
         public static final int detail_repair_activity=0x7f030019;
         public static final int detail_repair_item=0x7f03001a;
         public static final int main_activity=0x7f03001b;
-        public static final int order_by_check_cost_button_style_main_page=0x7f03001c;
-        public static final int order_by_phone_button_style_main_page=0x7f03001d;
-        public static final int order_by_phone_item=0x7f03001e;
-        public static final int order_by_web_button_style_main_page=0x7f03001f;
-        public static final int support_simple_spinner_dropdown_item=0x7f030020;
-        public static final int web_order_item=0x7f030021;
-        public static final int web_order_select=0x7f030022;
+        public static final int oder_by_web_activity=0x7f03001c;
+        public static final int order_by_check_cost_button_style_main_page=0x7f03001d;
+        public static final int order_by_phone_button_style_main_page=0x7f03001e;
+        public static final int order_by_phone_item=0x7f03001f;
+        public static final int order_by_web_button_style_main_page=0x7f030020;
+        public static final int support_simple_spinner_dropdown_item=0x7f030021;
+        public static final int web_order_item=0x7f030022;
+        public static final int web_order_select=0x7f030023;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;

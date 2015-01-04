@@ -19,9 +19,11 @@ import android.widget.Toast;
 public abstract class BaseActivity extends Activity implements OnClickListener{
 
 	protected LSApplication mApplication;
-	protected ImageView leftBtn, rightBtn, netBtn;
+	protected ImageView leftBtn, netBtn;
 	protected View titleView;
 	protected TextView titleTextView;
+	
+	protected TextView rightBtn;
 	
 	private TextView refreshTip;
 	
@@ -71,7 +73,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener{
 		titleView = actionBar.findViewById(R.id.title_view);
 		leftBtn = (ImageView)titleView.findViewById(R.id.title_leftbtn);
 		leftBtn.setOnClickListener(this);
-		rightBtn = (ImageView)titleView.findViewById(R.id.title_rightbtn);
+		rightBtn = (TextView)titleView.findViewById(R.id.title_rightbtn);
 		titleTextView = (TextView)titleView.findViewById(R.id.title_normal);
 		
 	}
