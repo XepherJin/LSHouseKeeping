@@ -98,6 +98,7 @@ public class SettingActivity extends BaseActivity{
 			case R.id.clear_cache_textview:
 				ImageLoader.getInstance().clearDiskCache();
 				ImageLoader.getInstance().clearMemoryCache();
+				dBHelper.deleteAllSuperItems();
 				Toast.makeText(SettingActivity.this, "清理完成", Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.about_us_textview:

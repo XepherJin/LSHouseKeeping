@@ -17,7 +17,7 @@ public class OrderUtil {
 	public static final String CHARSET = "UTF-8";
 
 	public static void requestOrder(final Context context, String content, String name, String address, 
-			int areaId, String phone) {
+			int areaId, String phone, final OnOrderRequestCompleteListener onOrderRequestCompleteListener) {
 		try {
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("content", content);
@@ -32,16 +32,18 @@ public class OrderUtil {
 				public void onFailure(int statusCode, Header[] headers,
 						Throwable throwable, JSONObject errorResponse) {
 					// TODO Auto-generated method stub
-					super.onFailure(statusCode, headers, throwable, errorResponse);
-					Toast.makeText(context, "网络发生错误", Toast.LENGTH_SHORT).show();
 				}
 
 				@Override
 				public void onSuccess(int statusCode, Header[] headers,
 						JSONObject response) {
 					// TODO Auto-generated method stub
+					try {
+						onOrderRequestCompleteListener.onRequestSuccess(response.get("status").toString());
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
 				}
-				
 			});
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -109,5 +111,9 @@ public class OrderUtil {
 	public static interface OnRequestCompleteListener{
 		public void onRequestSuccess(JSONArray jsonArray);
 		public void onRequestFail();
+	}
+	
+	public static interface OnOrderRequestCompleteListener{
+		public void onRequestSuccess(String statusCode);
 	}
 }
