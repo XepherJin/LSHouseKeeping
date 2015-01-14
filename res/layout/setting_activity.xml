@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal" >
+
+    <Button
+        android:id="@+id/share_textview"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:textColor="@drawable/setting_textview_selector"
+        android:background="@drawable/setting_button_selector"
+        android:text="分享APP"/>
+    
+    <Button
+        android:id="@+id/clear_cache_textview"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColor="@drawable/setting_textview_selector"
+        android:background="@drawable/setting_button_selector"
+        android:gravity="center"
+        android:layout_below="@+id/share_textview"
+        android:layout_marginTop="30dp"
+        android:text="清除缓存"/>
+    
+    <Button
+        android:id="@+id/about_us_textview"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColor="@drawable/setting_textview_selector"
+        android:background="@drawable/setting_button_selector"
+        android:gravity="center"
+        android:layout_below="@+id/clear_cache_textview"
+        android:layout_marginTop="30dp"
+        android:text="关于我们"/>
+    
+    <com.retropoktan.lshousekeeping.view.ImageCycleView
+        android:id="@+id/ad_viewpager_setting_page"
+        android:layout_width="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="130dp" >
+    </com.retropoktan.lshousekeeping.view.ImageCycleView>
+
+
+</RelativeLayout>

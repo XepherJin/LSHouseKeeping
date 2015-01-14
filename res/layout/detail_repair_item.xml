@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
     
     <View 
@@ -12,7 +12,7 @@
     
     <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
     android:gravity="center"
     android:background="@drawable/main_page_layout_selector"
     android:orientation="horizontal" >
@@ -20,17 +20,16 @@
     <ImageView 
         android:id="@+id/repair_item_imageview"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scaleType="center"
-        android:src="@android:drawable/ic_menu_gallery"
-        android:layout_weight="7"/>
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:layout_weight="8"/>
     
     <LinearLayout
         android:id="@+id/detail_repair_textview_layout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:gravity="center_vertical"
-        android:layout_weight="5"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="4.5"
         android:orientation="vertical">
         
         <TextView 
@@ -38,8 +37,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="#666666"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:singleLine="true"
             android:textSize="15sp"
-            android:text="管子变成羊驼了要修"/>
+            android:ellipsize="end"/>
         
         <TextView 
             android:id="@+id/detail_repiar_content_textview"
@@ -47,35 +49,36 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:lines="4"
             android:textSize="13sp"
-            android:textColor="@color/repair_content_text_color"
-            android:text="那你倒是介绍咯。写点儿介绍咯，写点儿咯，写咯，咯。咯！凑凑字数，看看能不能自动换行，凭我长得这么帅，应该自动换行了吧～～"/>
+            android:textColor="@color/repair_content_text_color"/>
         
     </LinearLayout>
     
-    <TextView 
+    <com.retropoktan.lshousekeeping.view.PriceTextView
         android:id="@+id/detail_repiar_content_cost_textview"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="7"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
         android:gravity="center"
-        android:text="100元"
-        android:textColor="@color/Theme_color"
+        android:text="0元"
         android:textSize="18sp"/>
     
     <ImageView 
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|right"
-        android:src="@android:drawable/ic_menu_slideshow"
-        android:layout_weight="8"/>
+        android:src="@drawable/enter_indicator"
+        android:scaleType="centerInside"
+        android:layout_marginRight="5dp"
+        android:layout_weight="9.5"/>
 
 </LinearLayout>
 
 <View 
         android:layout_width="fill_parent"
         android:layout_height="0.5dp"
-        android:layout_gravity="bottom"
         android:layout_marginBottom="5dp"
         android:background="@drawable/view_border_line"/>
 </LinearLayout>

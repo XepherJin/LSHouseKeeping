@@ -7,10 +7,11 @@
     
     <ImageView 
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:src="@android:drawable/ic_menu_upload_you_tube"
-        android:layout_weight="1.0"
-        android:scaleType="center"/>
+        android:layout_height="60dp"
+        android:src="@drawable/order_by_web_icon"
+        android:layout_gravity="center"
+        android:scaleType="centerInside"
+        android:layout_weight="1.0"/>
     
     <RelativeLayout
         android:layout_width="fill_parent"

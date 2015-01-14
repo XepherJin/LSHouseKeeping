@@ -3,20 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/main_page_layout_selector"
     android:gravity="center" >
     
     <ImageView 
         android:id="@+id/web_order_item_imageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:src="@android:drawable/ic_delete"/>
+        android:scaleType="centerInside"
+        android:src="@drawable/demo_icon"/>
     
     <TextView 
         android:id="@+id/web_order_item_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="水电"/>
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:layout_marginBottom="5dp"
+        android:text=""/>
     
 </LinearLayout>

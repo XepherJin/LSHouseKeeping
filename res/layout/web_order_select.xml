@@ -18,15 +18,32 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:columnWidth="90dp"
-            android:numColumns="3">
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="2dp"
+            android:horizontalSpacing="2dp"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="4">
         </com.retropoktan.lshousekeeping.view.LSTopGridView>
         
-        <android.support.v4.view.ViewPager
-            android:id="@+id/ad_viewpager"
+        <com.retropoktan.lshousekeeping.view.ImageCycleView 
+            android:id="@+id/ad_viewpager_select_page"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
-            
+            android:layout_height="100dp"></com.retropoktan.lshousekeeping.view.ImageCycleView>
+        
+        <com.retropoktan.lshousekeeping.view.LSTopGridView
+            android:id="@+id/bottom_gridview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:columnWidth="90dp"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="2dp"
+            android:horizontalSpacing="2dp"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="4">
+        </com.retropoktan.lshousekeeping.view.LSTopGridView>
+        
         </LinearLayout>
+        
     </ScrollView>
     
 

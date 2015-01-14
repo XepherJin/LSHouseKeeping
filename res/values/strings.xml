@@ -10,5 +10,7 @@
     <drawable name="view_border_line">#e6e6e6</drawable>
     <drawable name="base_pressed">#fafafa</drawable>
     <drawable name="base_unpressed">#ffffff</drawable>
+    <string name="order_success">预约成功</string>
+    <string name="order_failed">预约失败</string>
     
 </resources>

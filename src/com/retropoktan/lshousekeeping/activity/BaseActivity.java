@@ -2,15 +2,18 @@ package com.retropoktan.lshousekeeping.activity;
 
 import com.retropoktan.lshousekeeping.R;
 import com.retropoktan.lshousekeeping.application.LSApplication;
+import com.retropoktan.lshousekeeping.dao.DBHelper;
 
 import de.greenrobot.dao.internal.FastCursor;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,6 +28,8 @@ public abstract class BaseActivity extends Activity implements OnClickListener{
 	
 	protected TextView rightBtn;
 	
+	protected int version = android.os.Build.VERSION.SDK_INT;
+	
 	private TextView refreshTip;
 	
 	private TextView chooseCityTextView; // show current city
@@ -37,10 +42,13 @@ public abstract class BaseActivity extends Activity implements OnClickListener{
 	/**    是否刷新    **/
 	private boolean isRefreshing;
 	
+	protected DBHelper dBHelper;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		dBHelper = DBHelper.getInstance(getApplicationContext());
 		mApplication = (LSApplication)getApplication();
 		mLinearLayout = new LinearLayout(this);
 		mLinearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -82,6 +90,9 @@ public abstract class BaseActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		finish();
+		if (version >= 5) {
+			overridePendingTransition(R.anim.in_from_left, R.anim.out_from_right);
+		}
 		
 	}
 
@@ -146,7 +157,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener{
 	
 	public void setRightButtonShown() {
 		rightBtn.setVisibility(View.VISIBLE);
-		leftBtn.setClickable(true);
+		rightBtn.setClickable(true);
 	}
 	
 	public void setChangeCityShown() {
@@ -196,4 +207,21 @@ public abstract class BaseActivity extends Activity implements OnClickListener{
 		refreshView.setVisibility(View.GONE);
 		isRefreshing = false;
 	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if (!(this instanceof MainActivity)) {
+				this.finish();
+				if (version >= 5) {
+					overridePendingTransition(R.anim.in_from_left, R.anim.out_from_right);
+				}
+				return true;
+			}
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
+	
 }

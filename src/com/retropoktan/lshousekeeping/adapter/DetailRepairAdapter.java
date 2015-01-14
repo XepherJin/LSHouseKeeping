@@ -1,8 +1,13 @@
 package com.retropoktan.lshousekeeping.adapter;
 
+import java.util.List;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.retropoktan.lshousekeeping.R;
+import com.retropoktan.lshousekeeping.dao.DetailRepairItem;
 import com.retropoktan.lshousekeeping.view.PriceTextView;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,22 +20,32 @@ public class DetailRepairAdapter extends BaseAdapter{
 	public static final String TAG = DetailRepairAdapter.class.getSimpleName();
 	public LayoutInflater layoutInflater;
 	
+	public List<DetailRepairItem> detailRepairItemsList;
+	
+	public int[] checkList;
+	
+	public DetailRepairAdapter(List<DetailRepairItem> detailRepairItemsList, Context context) {
+		super();
+		this.detailRepairItemsList = detailRepairItemsList;
+		this.layoutInflater = LayoutInflater.from(context);
+	}
+
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return detailRepairItemsList.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
-		return null;
+		return detailRepairItemsList.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
-		return 0;
+		return position;
 	}
 
 	@Override
@@ -49,7 +64,11 @@ public class DetailRepairAdapter extends BaseAdapter{
 		else {
 			viewHolder = (ViewHolder)convertView.getTag();
 		}
-		
+		DetailRepairItem detailRepairItem = (DetailRepairItem)detailRepairItemsList.get(position);
+		viewHolder.repairItemTitleTextView.setText(detailRepairItem.getTitle());
+		viewHolder.repairItemPriceTextView.setPrice(String.valueOf(detailRepairItem.getPrice()));
+		viewHolder.repairItemContentTextView.setText(detailRepairItem.getContent());
+		ImageLoader.getInstance().displayImage("http://imgs.xiuna.com/xiezhen/2013-3-20/1/12.jpg", viewHolder.repairItemImageView);
 		return convertView;
 	}
 

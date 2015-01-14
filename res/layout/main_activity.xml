@@ -5,12 +5,12 @@
     android:orientation="vertical"
     tools:context="com.retropoktan.lshousekeeping.MainActivity" >
     
-    <android.support.v4.view.ViewPager
+    <com.retropoktan.lshousekeeping.view.ImageCycleView
         android:id="@+id/ad_viewpager_main_page"
         android:layout_width="fill_parent"
         android:layout_weight="0.7"
         android:layout_height="wrap_content" >
-    </android.support.v4.view.ViewPager>
+    </com.retropoktan.lshousekeeping.view.ImageCycleView>
     
     <LinearLayout 
         android:id="@+id/button_select_main_page"
@@ -18,6 +18,11 @@
         android:layout_height="fill_parent"
         android:layout_weight="0.3"
         android:orientation="vertical">
+        
+        <View 
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:background="#666666"/>
         
         <include layout="@layout/order_by_phone_button_style_main_page"
             android:id="@+id/order_by_phone_layout"

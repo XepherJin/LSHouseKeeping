@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <ScrollView 
+        android:layout_width="fill_parent"
+        android:layout_weight="2"
+        android:layout_height="fill_parent">
+    
+    <LinearLayout 
+        android:id="@+id/order_form_layout"
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        
+                
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="请填写预约表，我们将在10分钟内与您联系，谢谢！"
+        android:gravity="center"
+        android:textColor="#666666"
+        android:textSize="13sp"/>
+    
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="0.5dp"
+        android:background="@drawable/view_border_line"/>
+    
+    <LinearLayout 
+        android:id="@+id/name_in_order_form_layout"
+        android:layout_width="fill_parent"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:layout_height="45dp">
+        
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:layout_marginLeft="15dp"
+            android:textSize="16sp"
+            android:text="姓名"/>
+        
+        <EditText 
+            android:id="@+id/name_in_order_form_edittext"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|left"
+            android:background="@null"
+            android:singleLine="true"
+            android:layout_weight="1"/>
+        
+    </LinearLayout>
+    
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="@drawable/view_border_line"/>
+    
+    <LinearLayout 
+        android:id="@+id/phone_in_order_form_layout"
+        android:layout_width="fill_parent"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:layout_height="45dp">
+        
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:layout_marginLeft="15dp"
+            android:textSize="16sp"
+            android:text="电话号码"/>
+        
+        <EditText 
+            android:id="@+id/phone_in_order_form_edittext"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|left"
+            android:background="@null"
+            android:inputType="number"
+            android:singleLine="true"
+            android:layout_weight="1"/>
+        
+    </LinearLayout>
+    
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="@drawable/view_border_line"/>
+    
+    <LinearLayout 
+        android:id="@+id/address_in_order_form_layout"
+        android:layout_width="fill_parent"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:layout_height="45dp">
+        
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:layout_marginLeft="15dp"
+            android:textSize="16sp"
+            android:text="详细地址"/>
+        
+        <EditText 
+            android:id="@+id/address_in_order_form_edittext"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|left"
+            android:background="@null"
+            android:singleLine="true"
+            android:layout_weight="1"/>
+        
+    </LinearLayout>
+    
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="@drawable/view_border_line"/>
+    
+    <LinearLayout 
+        android:id="@+id/repair_item_in_order_form_layout"
+        android:layout_width="fill_parent"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:layout_height="45dp">
+        
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:layout_marginLeft="15dp"
+            android:textSize="16sp"
+            android:text="维修项目"/>
+        
+        <EditText 
+            android:id="@+id/repair_item_in_order_form_edittext"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|left"
+            android:background="@null"
+            android:singleLine="true"
+            android:layout_weight="1"/>
+        
+    </LinearLayout>
+    
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="@drawable/view_border_line"/>
+    
+    <LinearLayout 
+        android:id="@+id/time_in_order_form_layout"
+        android:layout_width="fill_parent"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:layout_height="45dp">
+        
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:layout_marginLeft="15dp"
+            android:textSize="16sp"
+            android:text="预约时间"/>
+        
+        <EditText 
+            android:id="@+id/time_in_order_form_edittext"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|left"
+            android:background="@null"
+            android:singleLine="true"
+            android:layout_weight="1"/>
+        
+    </LinearLayout>
+    
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="@drawable/view_border_line"/>
+    
+    <LinearLayout 
+        android:id="@+id/ps_in_order_form_layout"
+        android:layout_width="fill_parent"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:layout_height="45dp">
+        
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:layout_marginLeft="15dp"
+            android:textSize="16sp"
+            android:text="备注"/>
+        
+        <EditText 
+            android:id="@+id/ps_in_order_form_edittext"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical|left"
+            android:background="@null"
+            android:singleLine="true"
+            android:layout_weight="1"/>
+        
+    </LinearLayout>
+    
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="@drawable/view_border_line"/>
+    
+    <LinearLayout 
+        android:id="@+id/add_photo_in_order_form_layout"
+        android:layout_width="fill_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_height="fill_parent">
+        
+    <Button 
+        android:id="@+id/add_photo_button_in_order_form"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:background="@drawable/add_photo_button_selector"
+        android:text="提交图片"/>
+    
+    <com.meetme.android.horizontallistview.HorizontalListView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:widget="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/add_photo_listview_in_order_form"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:divider="@android:color/white"
+        widget:dividerWidth="5dp" />
+    </LinearLayout>
+        
+    </LinearLayout>
+        
+    </ScrollView>
+    
+    <LinearLayout
+        android:id="@+id/submit_layout"
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:layout_height="130dp">
+        
+        <View 
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@drawable/view_border_line"/>
+        <TextView
+            android:id="@+id/total_price_textview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="总价： 0 元"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="right"
+            android:layout_marginRight="5dp"
+            android:textSize="20sp"/>
+        
+        <Button 
+            android:id="@+id/submit_order_button"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="确认预约"
+            android:textSize="17sp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/launcher_button_background"/>
+        
+    </LinearLayout>
+</LinearLayout>
