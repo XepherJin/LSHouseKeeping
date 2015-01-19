@@ -2,7 +2,10 @@ package com.retropoktan.lshousekeeping.activity;
 
 import java.util.ArrayList;
 
+import org.apache.http.Header;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -17,9 +20,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.retropoktan.lshousekeeping.R;
 import com.retropoktan.lshousekeeping.application.LSApplication;
+import com.retropoktan.lshousekeeping.constant.UrlConst;
+import com.retropoktan.lshousekeeping.net.HttpUtil;
 import com.retropoktan.lshousekeeping.net.ImageUtil;
 import com.retropoktan.lshousekeeping.net.ImageUtil.OnRequestSuccessListener;
 import com.retropoktan.lshousekeeping.net.JSONUtil;
@@ -47,7 +54,7 @@ public class MainActivity extends BaseActivity{
         setContentView(R.layout.main_activity);
         setRightButtonShown();
         setBackButtonGone();
-        LSApplication.getInstance().setCurrentPhoneNum("15008427715");
+        getCurrentPhone();
         initViewPager();
         initButtons();
         // 开启logcat输出，方便debug，发布时请关闭
@@ -111,7 +118,33 @@ public class MainActivity extends BaseActivity{
     }
     
     private void getCurrentPhone() {
-    	
+    	RequestParams requestParams = new RequestParams();
+    	requestParams.put("area_id", "1");
+    	HttpUtil.get(UrlConst.GetAreaTelUrl, requestParams, new JsonHttpResponseHandler(){
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					Throwable throwable, JSONObject errorResponse) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), "获取信息失败", Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					JSONObject response) {
+				// TODO Auto-generated method stub
+				try {
+					if (response.get("status").toString().equals("1")) {
+						JSONObject jsonObject = (JSONObject)response.get("body");
+						LSApplication.getInstance().setCurrentPhoneNum(jsonObject.getString("tel"));
+					}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+    		
+    	});
     }
 
 	private ImageCycleViewListener mAdCycleViewListener = new ImageCycleViewListener() {
@@ -149,7 +182,7 @@ public class MainActivity extends BaseActivity{
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
-						Intent phoneIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "15008427715"));
+						Intent phoneIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + LSApplication.getInstance().getCurrentPhoneNum()));
 						startActivity(phoneIntent);
 						if (version >= 5) {
 							overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);

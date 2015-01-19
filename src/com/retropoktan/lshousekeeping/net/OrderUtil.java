@@ -10,6 +10,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.retropoktan.lshousekeeping.application.LSApplication;
 import com.retropoktan.lshousekeeping.constant.UrlConst;
 
 public class OrderUtil {
@@ -17,21 +19,25 @@ public class OrderUtil {
 	public static final String CHARSET = "UTF-8";
 
 	public static void requestOrder(final Context context, String content, String name, String address, 
-			int areaId, String phone, final OnOrderRequestCompleteListener onOrderRequestCompleteListener) {
+			int areaId, String phone, String timeStamp, String remark, final OnOrderRequestCompleteListener onOrderRequestCompleteListener) {
 		try {
-			JSONObject jsonObject = new JSONObject();
+			RequestParams jsonObject = new RequestParams();
 			jsonObject.put("content", content);
 			jsonObject.put("area_id", areaId);
 			jsonObject.put("consumer", phone);
 			jsonObject.put("name", name);
 			jsonObject.put("address", address);
-			StringEntity stringEntity = new StringEntity(String.valueOf(jsonObject), CHARSET);
-			HttpUtil.post(context, UrlConst.MakeOrderUrl, stringEntity, HttpUtil.ContentTypeJson, new JsonHttpResponseHandler(){
+			jsonObject.put("time", timeStamp);
+			jsonObject.put("token", LSApplication.getInstance().getToken());
+			jsonObject.put("remark", remark);
+			Log.d("oder_request", jsonObject.toString());
+			HttpUtil.post(UrlConst.MakeOrderUrl, jsonObject, new JsonHttpResponseHandler(){
 
 				@Override
 				public void onFailure(int statusCode, Header[] headers,
 						Throwable throwable, JSONObject errorResponse) {
 					// TODO Auto-generated method stub
+					Toast.makeText(context, "预约失败", Toast.LENGTH_SHORT).show();
 				}
 
 				@Override
@@ -39,7 +45,13 @@ public class OrderUtil {
 						JSONObject response) {
 					// TODO Auto-generated method stub
 					try {
-						onOrderRequestCompleteListener.onRequestSuccess(response.get("status").toString());
+						if (response.get("status").toString().equals("1")) {
+							onOrderRequestCompleteListener.onRequestSuccess((JSONObject)response.get("body"));
+						}
+						else {
+							onOrderRequestCompleteListener.onRequestFail();
+						}
+						Log.d("order_response", response.toString());
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
@@ -114,6 +126,7 @@ public class OrderUtil {
 	}
 	
 	public static interface OnOrderRequestCompleteListener{
-		public void onRequestSuccess(String statusCode);
+		public void onRequestSuccess(JSONObject jsonObject);
+		public void onRequestFail();
 	}
 }

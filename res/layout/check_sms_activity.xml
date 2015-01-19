@@ -24,22 +24,32 @@
         
         <EditText
             android:id="@+id/edittext_for_sms"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.41"
             android:background="@drawable/setting_button_unpressed"
-            android:hint="请输入您的短信验证码" />
+            android:hint="请输入验证码" />
         
         <Button 
             android:id="@+id/send_sms_verify_button"
             android:layout_height="fill_parent"
             android:layout_width="wrap_content"
             android:text="验证"
-            android:textSize="20dp"
+            android:textSize="18.5dp"
             android:textColor="@android:color/white"
             android:background="@drawable/launcher_button_background"
             android:layout_marginLeft="5dp"
-            android:layout_weight="1"/>
+            android:layout_weight="2"/>
+        
+        <Button 
+            android:id="@+id/resend_button"
+            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:text="重新发送"
+            android:textSize="18.5dp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/launcher_button_background"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="2"/>
         
     </LinearLayout>
     

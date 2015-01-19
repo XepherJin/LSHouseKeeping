@@ -11,14 +11,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ScrollView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -46,6 +44,8 @@ public class OrderByCheckCostActivity extends BaseActivity{
 	
 	private ArrayList<String> mImageUrl = null;
 	
+	private int requestCode;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -54,6 +54,7 @@ public class OrderByCheckCostActivity extends BaseActivity{
 		setContentView(R.layout.web_order_select);
 		setRightButtonShown();
 		superItemsList = new ArrayList<SuperItem>();
+		requestCode = getIntent().getIntExtra("request_code", 0);
 		initViews();
 		initViewPager();
 		setSuperItems();
@@ -138,6 +139,9 @@ public class OrderByCheckCostActivity extends BaseActivity{
 			startActivity(intent);
 			if (version >= 5) {
 				overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
+			}
+			if (requestCode == 1) {
+				OrderByCheckCostActivity.this.finish();
 			}
 		}
 		

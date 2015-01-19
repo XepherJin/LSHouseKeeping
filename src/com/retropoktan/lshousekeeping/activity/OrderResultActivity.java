@@ -106,7 +106,7 @@ public class OrderResultActivity extends BaseActivity{
 		// TODO Auto-generated method stub
 		finish();
 		if (version >= 5) {
-			overridePendingTransition(0, R.anim.out_from_right);
+			overridePendingTransition(R.anim.in_from_left, R.anim.out_from_right);
 		}
 		
 	}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -102,7 +103,11 @@ public class SettingActivity extends BaseActivity{
 				Toast.makeText(SettingActivity.this, "清理完成", Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.about_us_textview:
-				
+				Intent intent = new Intent(SettingActivity.this, AboutUsActivity.class);
+				startActivity(intent);
+				if (version >= 5) {
+					overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
+				}
 				break;
 			default:
 				break;

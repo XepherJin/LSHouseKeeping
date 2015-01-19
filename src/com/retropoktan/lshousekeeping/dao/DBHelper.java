@@ -69,7 +69,7 @@ public class DBHelper {
 		try {
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject jsonObject = jsonArray.getJSONObject(i);
-				SuperItem superItem = new SuperItem(String.valueOf(jsonObject.getInt("category_id")), jsonObject.get("category").toString(), "http://imgs.xiuna.com/xiezhen/2013-3-20/1/12.jpg");
+				SuperItem superItem = new SuperItem(String.valueOf(jsonObject.getInt("category_id")), jsonObject.get("category").toString(), jsonObject.getString("url"));
 				saveSuperItem(superItem);
 				superItemsList.add(superItem);
 			}

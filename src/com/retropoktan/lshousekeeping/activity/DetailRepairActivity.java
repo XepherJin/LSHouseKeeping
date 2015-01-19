@@ -1,7 +1,6 @@
 package com.retropoktan.lshousekeeping.activity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -11,13 +10,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.retropoktan.lshousekeeping.R;
@@ -36,6 +33,7 @@ public class DetailRepairActivity extends BaseActivity{
 	private DetailRepairAdapter detailRepairAdapter;
 	private String categoryId;
 	private ProgressHUD progressHUD;
+	private String price;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -107,12 +105,25 @@ public class DetailRepairActivity extends BaseActivity{
 				long arg3) {
 			// TODO Auto-generated method stub
 			Intent intent = new Intent(DetailRepairActivity.this, OrderByWebActivity.class);
+			price = parsePrice(detailRepairItemsList.get(arg2).getPrice(), price);
 			intent.putExtra("title", detailRepairItemsList.get(arg2).getTitle());
+			intent.putExtra("price", price);
 			startActivity(intent);
 			if (version >= 5) {
 				overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
 			}
+			DetailRepairActivity.this.finish();
 		}
 		
+	}
+	
+	private String parsePrice(String string, String price) {
+		if (string.contains("元")) {
+			price = string.substring(0, string.indexOf("元"));
+		}
+		else {
+			price = "0";
+		}
+		return price;
 	}
 }

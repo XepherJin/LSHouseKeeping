@@ -33,12 +33,14 @@ public class LSApplication extends Application{
 	private String userName = null;
 	private String address = null;
 	private String userPhone = null;
+	private String userToken = null;
 	public static final String PHONE_NUM = "phoneNumber";
 	public static final String USER_NAME = "user_name";
 	public static final String ADDRESS = "address";
 	public static final String USER_PHONE = "user_phone";
 	public static final String TOKEN = "user_token";
 	public static final String PASSWORD = "password";
+	public static final String USER_TOKEN = "user_token";
 
 	@Override
 	public void onCreate() {
@@ -88,6 +90,22 @@ public class LSApplication extends Application{
 		return currentPhoneNum;
 	}
 	
+	public void setToken(String token) {
+		if (token != null) {
+			SharedPreferences.Editor editor = getSharedPreferences().edit();
+			if (editor.putString(USER_TOKEN, token).commit()) {
+				this.userToken = token;
+			}
+		}
+	}
+	
+	public String getToken() {
+		if (userToken == null) {
+			userToken = getSharedPreferences().getString(USER_TOKEN, null);
+		}
+		return userToken;
+	}
+	
 	public void setCurrentPhoneNum(String phoneNum) {
 		if (phoneNum != null) {
 			SharedPreferences.Editor editor = getSharedPreferences().edit();
@@ -96,6 +114,7 @@ public class LSApplication extends Application{
 			}
 		}
 	}
+	
 	public String getUserPhoneNum() {
 		if (userPhone == null) {
 			userPhone = getSharedPreferences().getString(USER_PHONE, null);
@@ -136,7 +155,7 @@ public class LSApplication extends Application{
 	public void setUserName(String userName) {
 		if (userName != null) {
 			SharedPreferences.Editor editor = getSharedPreferences().edit();
-			if (editor.putString(PHONE_NUM, userName).commit()) {
+			if (editor.putString(USER_NAME, userName).commit()) {
 				this.userName = userName;
 			}
 		}

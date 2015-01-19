@@ -10,9 +10,27 @@
         android:layout_height="0.5dp"
         android:background="@drawable/view_border_line"/>
     
+    <TextView 
+            android:id="@+id/detail_repair_title_textview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/main_page_layout_selector"
+            android:textColor="#666666"
+            android:layout_marginLeft="5dp"
+            android:singleLine="true"
+            android:gravity="center"
+            android:text="冲下啊啊啊啊啊啊"
+            android:textSize="18sp"
+            android:ellipsize="end"/>
+    
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="@drawable/view_border_line"/>
+    
     <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="80dp"
     android:gravity="center"
     android:background="@drawable/main_page_layout_selector"
     android:orientation="horizontal" >
@@ -21,49 +39,25 @@
         android:id="@+id/repair_item_imageview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:scaleType="centerInside"
-        android:layout_weight="8"/>
-    
-    <LinearLayout
-        android:id="@+id/detail_repair_textview_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_weight="4.5"
-        android:orientation="vertical">
-        
-        <TextView 
-            android:id="@+id/detail_repair_title_textview"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#666666"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:singleLine="true"
-            android:textSize="15sp"
-            android:ellipsize="end"/>
+        android:src="@drawable/demo_icon"
+        android:layout_weight="12"/>
+
         
         <TextView 
             android:id="@+id/detail_repiar_content_textview"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="5dp"
             android:ellipsize="end"
+            android:layout_weight="5"
+            android:gravity="center_vertical"
+            android:text="asdasdasdasdasdasdas"
+            android:layout_marginLeft="5dp"
             android:lines="4"
             android:textSize="13sp"
             android:textColor="@color/repair_content_text_color"/>
-        
-    </LinearLayout>
-    
-    <com.retropoktan.lshousekeeping.view.PriceTextView
-        android:id="@+id/detail_repiar_content_cost_textview"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="8"
-        android:gravity="center"
-        android:text="0元"
-        android:textSize="18sp"/>
     
     <ImageView 
         android:layout_width="fill_parent"
@@ -71,10 +65,22 @@
         android:layout_gravity="center_vertical|right"
         android:src="@drawable/enter_indicator"
         android:scaleType="centerInside"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginRight="5dp"
-        android:layout_weight="9.5"/>
+        android:layout_weight="15.5"/>
 
 </LinearLayout>
+
+        <com.retropoktan.lshousekeeping.view.PriceTextView
+        android:id="@+id/detail_repiar_content_cost_textview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        android:background="@drawable/main_page_layout_selector"
+        android:gravity="center"
+        android:text="0元"
+        android:textSize="18sp"/>
 
 <View 
         android:layout_width="fill_parent"

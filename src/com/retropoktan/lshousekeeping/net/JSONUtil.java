@@ -41,7 +41,7 @@ public class JSONUtil {
 			try {
 				for (int i = 0; i < jsonArray.length(); i++) {
 					JSONObject jsonObject = jsonArray.getJSONObject(i);
-					superItems.add(jsonObject.get("photo").toString());
+					superItems.add(jsonObject.get("url").toString());
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
