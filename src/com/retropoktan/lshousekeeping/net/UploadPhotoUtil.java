@@ -30,6 +30,7 @@ public class UploadPhotoUtil {
 			params.put("file", file);
 			params.put("appointmentid", appointmentId);
 			params.put("picindex", String.valueOf(picIndex));
+			Log.d("alsjdlkajsdlkajs", params.toString());
 			// 上传文件  
 			HttpUtil.post(url, params, new AsyncHttpResponseHandler() {  
 				@Override  

@@ -8,6 +8,7 @@ public class OrderItemCache {
 	private String address;
 	private float price;
 	private String orderItem;
+	private String ps;
 	private OrderItemCache() {
 		
 	}
@@ -59,11 +60,20 @@ public class OrderItemCache {
 		this.orderItem = oderItem;
 	}
 	
+	public String getPs() {
+		return ps;
+	}
+
+	public void setPs(String ps) {
+		this.ps = ps;
+	}
+
 	public void clearAll() {
 		name = null;
 		phone = null;
 		address = null;
 		price = 0;
 		orderItem = null;
+		ps = null;
 	}
 }

@@ -138,7 +138,6 @@ public class CheckSMSActivity extends BaseActivity{
 						}
 						else {
 							Toast.makeText(CheckSMSActivity.this, "验证失败", Toast.LENGTH_SHORT).show();
-							LSApplication.getInstance().setToken("MTQyMTUwNTg1N0w0Y09kVDE1MDA4NDI3NzE1");
 						}
 					} catch (Exception e) {
 						// TODO: handle exception

@@ -54,7 +54,7 @@
             android:layout_weight="5"
             android:gravity="center_vertical"
             android:text="asdasdasdasdasdasdas"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="3dp"
             android:lines="4"
             android:textSize="13sp"
             android:textColor="@color/repair_content_text_color"/>

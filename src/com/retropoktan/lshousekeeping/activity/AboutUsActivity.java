@@ -11,6 +11,7 @@ public class AboutUsActivity extends BaseActivity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setTitle(R.string.about_us_title);
+		setContentView(R.layout.about_us_activity);
 	}
 
 }

@@ -242,6 +242,7 @@
             android:background="@null"
             android:textSize="16sp"
             android:singleLine="true"
+            android:hint="选填"
             android:layout_weight="1"/>
         
     </LinearLayout>
@@ -266,7 +267,7 @@
         android:gravity="center_vertical"
         android:layout_marginLeft="15dp"
         android:textSize="16sp"
-        android:text="提交图片"/>
+        android:text="提交照片"/>
     
         </LinearLayout>
     
@@ -277,7 +278,6 @@
         android:layout_width="fill_parent"
         android:background="@android:color/white"
         android:layout_height="100dp"
-        android:layout_marginLeft="15dp"
         android:divider="@android:color/white"
         widget:dividerWidth="5dp" />
         

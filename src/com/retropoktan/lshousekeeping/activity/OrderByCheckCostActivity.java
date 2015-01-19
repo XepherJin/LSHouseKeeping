@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.retropoktan.lshousekeeping.R;
 import com.retropoktan.lshousekeeping.adapter.SuperItemAdapter;
+import com.retropoktan.lshousekeeping.application.LSApplication;
 import com.retropoktan.lshousekeeping.dao.SuperItem;
 import com.retropoktan.lshousekeeping.net.ImageUtil;
 import com.retropoktan.lshousekeeping.net.ImageUtil.OnRequestSuccessListener;
@@ -37,9 +39,10 @@ public class OrderByCheckCostActivity extends BaseActivity{
 	private ScrollView scrollView;
 	private LSTopGridView topGridView;
 	private LSTopGridView bottomGridView;
-	private List<HashMap<String, Object>> mData;
 	private List<SuperItem> superItemsList;
-	private SuperItemAdapter superItemAdapter;
+	private List<SuperItem> upList;
+	private List<SuperItem> downList;
+	private SuperItemAdapter superItemAdapter, downItemAdapter;
 	private ImageCycleView imageCycleView;
 	
 	private ArrayList<String> mImageUrl = null;
@@ -75,7 +78,7 @@ public class OrderByCheckCostActivity extends BaseActivity{
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
-						Intent phoneIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "15008427715"));
+						Intent phoneIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + LSApplication.getInstance().getCurrentPhoneNum()));
 						startActivity(phoneIntent);
 						if (version >= 5) {
 							overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
@@ -98,8 +101,17 @@ public class OrderByCheckCostActivity extends BaseActivity{
 				// TODO Auto-generated method stub
 				dBHelper.deleteAllSuperItems();
 				superItemsList.clear();
+				upList.clear();
+				downList.clear();
 				dBHelper.saveSuperItemsFromJSONArray(jsonArray, superItemsList);
+				for (int i = 0; i < 16; i++) {
+					upList.add(superItemsList.get(i));
+				}
+				for (int j = 16; j < superItemsList.size(); j++) {
+					downList.add(superItemsList.get(j));
+				}
 				superItemAdapter.notifyDataSetChanged();
+				downItemAdapter.notifyDataSetChanged();
 			}
 			
 			@Override
@@ -114,6 +126,7 @@ public class OrderByCheckCostActivity extends BaseActivity{
 		readSuperItemsCache();
 		getSuperItems();
 		superItemAdapter.notifyDataSetChanged();
+		downItemAdapter.notifyDataSetChanged();
 	}
 	
 	private void readSuperItemsCache() {
@@ -121,8 +134,17 @@ public class OrderByCheckCostActivity extends BaseActivity{
 		for (SuperItem superItem : dBHelper.loadAllSuperItems()) {
 			superItemsList.add(superItem);
 		}
-		superItemAdapter = new SuperItemAdapter(superItemsList, OrderByCheckCostActivity.this);
-		bottomGridView.setAdapter(superItemAdapter);
+		if (superItemsList.size() <= 0) {
+			upList = new ArrayList<SuperItem>();
+			downList = new ArrayList<SuperItem>();
+		}
+		else {
+			upList = new ArrayList<SuperItem>(superItemsList.subList(0, 16));
+			downList = new ArrayList<SuperItem>(superItemsList.subList(16, superItemsList.size()));
+		}
+		superItemAdapter = new SuperItemAdapter(upList, OrderByCheckCostActivity.this);
+		downItemAdapter = new SuperItemAdapter(downList, OrderByCheckCostActivity.this);
+		bottomGridView.setAdapter(downItemAdapter);
 		topGridView.setAdapter(superItemAdapter);
 		topGridView.setOnItemClickListener(new TopGridViewOnClickListener());
 		bottomGridView.setOnItemClickListener(new TopGridViewOnClickListener());

@@ -45,6 +45,7 @@ public class MainActivity extends BaseActivity{
 	private ImageCycleView imageCycleView;
 	
 	private ArrayList<String> mImageUrl = null;
+	private LinearLayout chooseCityLinearLayout;
 	
 	private long mExistTime; //the time when click back key
 	
@@ -54,6 +55,7 @@ public class MainActivity extends BaseActivity{
         setContentView(R.layout.main_activity);
         setRightButtonShown();
         setBackButtonGone();
+        initCityModule();
         getCurrentPhone();
         initViewPager();
         initButtons();
@@ -69,6 +71,19 @@ public class MainActivity extends BaseActivity{
         // 2.36（不包括）之前的版本需要调用以下2行代码
         Intent service = new Intent(context, XGPushService.class);
         context.startService(service);
+    }
+    
+    private void initCityModule() {
+    	chooseCityLinearLayout = (LinearLayout)findViewById(R.id.title_choose_city_layout);
+    	chooseCityLinearLayout.setVisibility(View.VISIBLE);
+    	chooseCityLinearLayout.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), "定位中...", Toast.LENGTH_SHORT).show();
+			}
+		});
     }
 
     private void initButtons() {

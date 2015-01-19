@@ -11,7 +11,17 @@
         <TextView 
             android:id="@+id/about_us_content_textview"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:text="        四川快乐居家科技有限公司，是一家移动互联网创业公司。公司主创人员具有20年以上的建筑经验，我们的团队有专业工程师，有在校大学生以及IT界人士，共同的梦想让我们一起奋斗。\n
+        e家修APP隶属于四川快乐居家科技有限公司，它是一款基于同城找维修（安装）工人的应用，主要提供家居维修和安装服务。可快捷方便的找到维修（安装）人员，是家居维修和网购家具安装的好帮手。\n
+        区别于传统的家居维修公司，我们致力于创造一个从材料选购到维修服务一键完成的家居维修服务平台。\n
+        2014年11月       基于移动互联网的家居维修平台开始酝酿\n
+        2014年12月       创业团队开始组建\n
+        2015年01月05日  四川快乐居家科技有限公司正式成立\n
+        2015年01月20日  快乐居家APP正式推出\n"/>
         
     </ScrollView>
 

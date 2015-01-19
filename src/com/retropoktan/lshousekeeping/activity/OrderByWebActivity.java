@@ -73,7 +73,6 @@ public class OrderByWebActivity extends BaseActivity{
 	private TextView chooseTimeTextView;
 	private EditText psEditText;
 	private List<File> photoFileList;
-	private static final int REQUEST_FROM_ORDER_PAGE = 5;
 	private static final int REQUEST_CODE = 4;
 	private static final int PHOTO_REQUEST_TAKEPHOTO = 1; // 拍照
 	private static final int PHOTO_REQUEST_GALLERY = 2; // 从相册中选择
@@ -89,6 +88,8 @@ public class OrderByWebActivity extends BaseActivity{
 	private PriceTextView priceTextView;
 	
 	private float totalPrice;
+	
+	private int photoUploadSuccessNum;
 	
 	private ProgressHUD progressHUD;
 	private CutPhotoUtil cutPhotoUtil;
@@ -142,7 +143,7 @@ public class OrderByWebActivity extends BaseActivity{
 			if (intent.getStringExtra("title") == null || intent.getStringExtra("title").equals("")) {
 			}
 			else {
-				repairItem = repairItem + "、" + intent.getStringExtra("title");
+				repairItem = repairItem + "," + intent.getStringExtra("title");
 			}
 		}
 	}
@@ -162,6 +163,7 @@ public class OrderByWebActivity extends BaseActivity{
 		itemTextView.setOnClickListener(new OrderItemOnClickListener());
 		chooseTimeTextView.setOnClickListener(new OrderItemOnClickListener());
 		psEditText = (EditText)findViewById(R.id.ps_in_order_form_edittext);
+		psEditText.setText(OrderItemCache.getInstance().getPs());
 		rightBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -195,6 +197,21 @@ public class OrderByWebActivity extends BaseActivity{
 			public void handleMessage(Message msg) {
 				// TODO Auto-generated method stub
 				switch (msg.what) {
+				case 1:
+					photoUploadSuccessNum += 1;
+					Log.d("photo_success_num", photoUploadSuccessNum + "");
+					if (photoUploadSuccessNum == photoFileList.size()) {
+						progressHUD.dismiss();
+						Toast.makeText(getApplicationContext(), "提交成功", Toast.LENGTH_SHORT).show();
+						Intent intent = new Intent(OrderByWebActivity.this, OrderResultActivity.class);
+						intent.putExtra("result", getResources().getString(R.string.order_success));
+						startActivity(intent);
+						if (version >= 5) {
+							overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
+						}
+						OrderByWebActivity.this.finish();
+					}
+					break;
 				case 10:
 					addPhotoAdapter.notifyDataSetChanged();
 					break;
@@ -387,7 +404,7 @@ public class OrderByWebActivity extends BaseActivity{
 	}
 	
 	private boolean isOrderFormCompleted() {
-		if ((phoneEditText.getText().toString().trim().length() != 11) || itemTextView.getText().toString().trim().equals("") || addressEditText.getText().toString().trim().equals("") || chooseTimeTextView.getText().toString().trim().equals("")) {
+		if ((phoneEditText.getText().toString().trim().length() != 11) || nameEditText.getText().toString().trim().equals("") ||itemTextView.getText().toString().trim().equals("") || addressEditText.getText().toString().trim().equals("") || chooseTimeTextView.getText().toString().trim().equals("")) {
 			return false;
 		}
 		return true;
@@ -397,74 +414,73 @@ public class OrderByWebActivity extends BaseActivity{
 		OrderItemCache.getInstance().setName(nameEditText.getText().toString().trim());
 		OrderItemCache.getInstance().setAddress(addressEditText.getText().toString());
 		OrderItemCache.getInstance().setPhone(phoneEditText.getText().toString().trim());
+		OrderItemCache.getInstance().setPs(psEditText.getText().toString());
 		OrderItemCache.getInstance().setPrice(totalPrice);
 		OrderItemCache.getInstance().setOrderItem(repairItem);
 		LSApplication.getInstance().setUserName(nameEditText.getText().toString().trim());
 		LSApplication.getInstance().setUserAddress(addressEditText.getText().toString());
 		LSApplication.getInstance().setUserPhoneNum(phoneEditText.getText().toString().trim());
-		if (isOrderFormCompleted()) {
-			timeStamp = TimeUtil.getTimeStampFromString(chooseTimeTextView.getText().toString());
-			progressHUD = ProgressHUD.show(OrderByWebActivity.this, "提交预约中", true);
-			OrderUtil.requestOrder(OrderByWebActivity.this, itemTextView.getText().toString().trim(), nameEditText.getText().toString().trim(), addressEditText.getText().toString().trim(), 1, phoneEditText.getText().toString().trim(), timeStamp, psEditText.getText().toString(), new OnOrderRequestCompleteListener() {
-				
-				@Override
-				public void onRequestSuccess(JSONObject jsonObject) {
-					// TODO Auto-generated method stub
-					try {
-						orderId = jsonObject.getString("appointmentid");
-					} catch (Exception e) {
-						// TODO: handle exception
-					}
-					if (photoFileList.isEmpty()) {
-						progressHUD.dismiss();
-						Intent intent = new Intent(OrderByWebActivity.this, OrderResultActivity.class);
-						intent.putExtra("result", getResources().getString(R.string.order_success));
-						startActivity(intent);
-						if (version >= 5) {
-							overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
-						}
-						OrderByWebActivity.this.finish();
-					}
-					else {
-						Log.d("photo_file", photoFileList.toString());
-						for (int i = 1; i <= photoFileList.size(); i++) {
-							try {
-								UploadPhotoUtil.uploadFile(i, photoFileList.get(i - 1), UrlConst.AppointmentPicUrl, orderId, LSApplication.getInstance().getUserPhoneNum(), new OnUploadCompleteListener() {
-									
-									@Override
-									public void onUploadSuccess() {
-										// TODO Auto-generated method stub
-										progressHUD.dismiss();
-										Toast.makeText(getApplicationContext(), "上传成功", Toast.LENGTH_SHORT).show();
-									}
-									
-									@Override
-									public void onUploadFail() {
-										// TODO Auto-generated method stub
-										Toast.makeText(getApplicationContext(), "上传失败", Toast.LENGTH_SHORT).show();
-									}
-								});
-							} catch (Exception e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					}
+		timeStamp = TimeUtil.getTimeStampFromString(chooseTimeTextView.getText().toString());
+		progressHUD = ProgressHUD.show(OrderByWebActivity.this, "提交预约中", true);
+		OrderUtil.requestOrder(OrderByWebActivity.this, itemTextView.getText().toString().trim(), nameEditText.getText().toString().trim(), addressEditText.getText().toString().trim(), 1, phoneEditText.getText().toString().trim(), timeStamp, psEditText.getText().toString(), new OnOrderRequestCompleteListener() {
+			
+			@Override
+			public void onRequestSuccess(JSONObject jsonObject) {
+				// TODO Auto-generated method stub
+				try {
+					orderId = jsonObject.getString("appointmentid");
+				} catch (Exception e) {
+					// TODO: handle exception
 				}
-
-				@Override
-				public void onRequestFail() {
-					// TODO Auto-generated method stub
+				if (photoFileList.isEmpty()) {
 					progressHUD.dismiss();
-					OrderItemCache.getInstance().setName(nameEditText.getText().toString().trim());
-					OrderItemCache.getInstance().setAddress(addressEditText.getText().toString());
-					OrderItemCache.getInstance().setPhone(phoneEditText.getText().toString().trim());
 					Intent intent = new Intent(OrderByWebActivity.this, OrderResultActivity.class);
-					intent.putExtra("result", getResources().getString(R.string.order_failed));
+					intent.putExtra("result", getResources().getString(R.string.order_success));
 					startActivity(intent);
+					if (version >= 5) {
+						overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
+					}
+					OrderByWebActivity.this.finish();
 				}
-			});
-		}
+				else {
+					Log.d("photo_file", photoFileList.toString());
+					for (int i = 1; i <= photoFileList.size(); i++) {
+						try {
+							UploadPhotoUtil.uploadFile(i, photoFileList.get(i - 1), UrlConst.AppointmentPicUrl, orderId, LSApplication.getInstance().getUserPhoneNum(), new OnUploadCompleteListener() {
+								
+								@Override
+								public void onUploadSuccess() {
+									// TODO Auto-generated method stub
+									progressHUD.dismiss();
+									Message message = new Message();
+									message.what = 1;
+									handler.sendMessage(message);
+								}
+								
+								@Override
+								public void onUploadFail() {
+									// TODO Auto-generated method stub
+									progressHUD.dismiss();
+									Toast.makeText(getApplicationContext(), "上传失败，请尝试再次提交！", Toast.LENGTH_SHORT).show();
+								}
+							});
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+
+			@Override
+			public void onRequestFail() {
+				// TODO Auto-generated method stub
+				progressHUD.dismiss();
+				Intent intent = new Intent(OrderByWebActivity.this, OrderResultActivity.class);
+				intent.putExtra("result", getResources().getString(R.string.order_failed));
+				startActivity(intent);
+			}
+		});
 	}
 	
 	class OrderItemOnClickListener implements OnClickListener{
@@ -492,6 +508,7 @@ public class OrderByWebActivity extends BaseActivity{
 		OrderItemCache.getInstance().setPhone(phoneEditText.getText().toString().trim());
 		OrderItemCache.getInstance().setPrice(totalPrice);
 		OrderItemCache.getInstance().setOrderItem(repairItem);
+		OrderItemCache.getInstance().setPs(psEditText.getText().toString());
 		Intent intent = new Intent(OrderByWebActivity.this, OrderByCheckCostActivity.class);
 		intent.putExtra("request_code", 1);
 		startActivity(intent);
@@ -506,16 +523,21 @@ public class OrderByWebActivity extends BaseActivity{
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			if (!isFirstTimeToOrder()) {
-				submitOrder();
+			if (isOrderFormCompleted()) {
+				if (!isFirstTimeToOrder()) {
+					submitOrder();
+				}
+				else {
+					Intent intent = new Intent(OrderByWebActivity.this, CheckSMSActivity.class);
+					intent.putExtra("phone", phoneEditText.getText().toString().trim());
+					startActivityForResult(intent, REQUEST_CODE);
+					if (version >= 5) {
+						overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
+					}
+				}
 			}
 			else {
-				Intent intent = new Intent(OrderByWebActivity.this, CheckSMSActivity.class);
-				intent.putExtra("phone", phoneEditText.getText().toString().trim());
-				startActivityForResult(intent, REQUEST_CODE);
-				if (version >= 5) {
-					overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
-				}
+				Toast.makeText(getApplicationContext(), "表单填写不完整！", Toast.LENGTH_SHORT).show();
 			}
 		}
 		
@@ -581,6 +603,7 @@ public class OrderByWebActivity extends BaseActivity{
 					OrderItemCache.getInstance().setName(nameEditText.getText().toString().trim());
 					OrderItemCache.getInstance().setAddress(addressEditText.getText().toString());
 					OrderItemCache.getInstance().setPhone(phoneEditText.getText().toString().trim());
+					OrderItemCache.getInstance().setPs(psEditText.getText().toString());
 					OrderByWebActivity.this.finish();
 					if (version >= 5) {
 						overridePendingTransition(R.anim.in_from_left, R.anim.out_from_right);

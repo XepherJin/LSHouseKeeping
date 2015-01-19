@@ -1,14 +1,15 @@
 package com.retropoktan.lshousekeeping.dao;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.retropoktan.lshousekeeping.application.LSApplication;
-
 import android.content.Context;
+
+import com.retropoktan.lshousekeeping.application.LSApplication;
 
 public class DBHelper {
 
@@ -70,11 +71,32 @@ public class DBHelper {
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject jsonObject = jsonArray.getJSONObject(i);
 				SuperItem superItem = new SuperItem(String.valueOf(jsonObject.getInt("category_id")), jsonObject.get("category").toString(), jsonObject.getString("url"));
-				saveSuperItem(superItem);
 				superItemsList.add(superItem);
+			}
+			Collections.sort(superItemsList, new Comparator<SuperItem>() {
+
+				@Override
+				public int compare(SuperItem lhs, SuperItem rhs) {
+					// TODO Auto-generated method stub
+					int lid = Integer.parseInt(lhs.getSuperItemId());
+					int rid = Integer.parseInt(rhs.getSuperItemId());
+					if (lid != rid) {
+						return lid - rid;
+					}
+					else {
+						if (!lhs.getSuperItemName().equals(rhs.getSuperItemName())) {
+							return lhs.getSuperItemName().compareTo(rhs.getSuperItemName());
+						}
+					}
+					return 0;
+				}
+			});
+			for (SuperItem superItem : superItemsList) {
+				saveSuperItem(superItem);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
+	
 }
