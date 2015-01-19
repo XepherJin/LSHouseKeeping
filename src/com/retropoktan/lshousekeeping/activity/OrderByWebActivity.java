@@ -156,9 +156,16 @@ public class OrderByWebActivity extends BaseActivity{
 		itemTextView = (TextView)findViewById(R.id.repair_item_in_order_form_edittext);
 		priceTextView = (PriceTextView)findViewById(R.id.total_price_textview);
 		priceTextView.setTotalPrice(String.valueOf(totalPrice));
-		nameEditText.setText(OrderItemCache.getInstance().getName());
-		phoneEditText.setText(OrderItemCache.getInstance().getPhone());
-		addressEditText.setText(OrderItemCache.getInstance().getAddress());
+		if (getIntent().getIntExtra("from_main_page", 0) == 1) {
+			nameEditText.setText(OrderItemCache.getInstance().getName());
+			phoneEditText.setText(OrderItemCache.getInstance().getPhone());
+			addressEditText.setText(OrderItemCache.getInstance().getAddress());
+		}
+		else {
+			nameEditText.setText(LSApplication.getInstance().getUserName());
+			phoneEditText.setText(LSApplication.getInstance().getUserPhoneNum());
+			addressEditText.setText(LSApplication.getInstance().getUserAddress());
+		}
 		itemTextView.setText(repairItem);
 		itemTextView.setOnClickListener(new OrderItemOnClickListener());
 		chooseTimeTextView.setOnClickListener(new OrderItemOnClickListener());
@@ -428,6 +435,7 @@ public class OrderByWebActivity extends BaseActivity{
 			public void onRequestSuccess(JSONObject jsonObject) {
 				// TODO Auto-generated method stub
 				try {
+					LSApplication.getInstance().setUserPhoneNum(phoneEditText.getText().toString().trim());
 					orderId = jsonObject.getString("appointmentid");
 				} catch (Exception e) {
 					// TODO: handle exception
@@ -473,12 +481,24 @@ public class OrderByWebActivity extends BaseActivity{
 			}
 
 			@Override
-			public void onRequestFail() {
+			public void onRequestFail(String statusCode) {
 				// TODO Auto-generated method stub
 				progressHUD.dismiss();
-				Intent intent = new Intent(OrderByWebActivity.this, OrderResultActivity.class);
-				intent.putExtra("result", getResources().getString(R.string.order_failed));
-				startActivity(intent);
+				if (statusCode.equals("13") || statusCode.equals("500")) {
+					Intent intent = new Intent(OrderByWebActivity.this, CheckSMSActivity.class);
+					intent.putExtra("phone", phoneEditText.getText().toString().trim());
+					startActivityForResult(intent, REQUEST_CODE);
+					if (version >= 5) {
+						overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
+					}
+				}
+				else {
+					Log.d("status", statusCode);
+					progressHUD.dismiss();
+					Intent intent = new Intent(OrderByWebActivity.this, OrderResultActivity.class);
+					intent.putExtra("result", getResources().getString(R.string.order_failed));
+					startActivity(intent);
+				}
 			}
 		});
 	}

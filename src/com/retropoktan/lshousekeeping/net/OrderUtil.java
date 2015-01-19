@@ -41,6 +41,16 @@ public class OrderUtil {
 				}
 
 				@Override
+				public void onFailure(int statusCode, Header[] headers,
+						String responseString, Throwable throwable) {
+					// TODO Auto-generated method stub
+					if (statusCode == 500) {
+						onOrderRequestCompleteListener.onRequestFail(String.valueOf(statusCode));
+					}
+				}
+
+
+				@Override
 				public void onSuccess(int statusCode, Header[] headers,
 						JSONObject response) {
 					// TODO Auto-generated method stub
@@ -49,7 +59,7 @@ public class OrderUtil {
 							onOrderRequestCompleteListener.onRequestSuccess((JSONObject)response.get("body"));
 						}
 						else {
-							onOrderRequestCompleteListener.onRequestFail();
+							onOrderRequestCompleteListener.onRequestFail(response.get("status").toString());
 						}
 						Log.d("order_response", response.toString());
 					} catch (Exception e) {
@@ -127,6 +137,6 @@ public class OrderUtil {
 	
 	public static interface OnOrderRequestCompleteListener{
 		public void onRequestSuccess(JSONObject jsonObject);
-		public void onRequestFail();
+		public void onRequestFail(String statusCode);
 	}
 }

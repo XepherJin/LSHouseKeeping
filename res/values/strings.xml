@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">易修哥</string>
+    <string name="app_name">e家修</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">设置</string>
     <string name="order_by_check_cost_title">费用标准</string>

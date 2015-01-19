@@ -34,6 +34,7 @@ public class DetailRepairActivity extends BaseActivity{
 	private String categoryId;
 	private ProgressHUD progressHUD;
 	private String price;
+	private String itemName;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -41,6 +42,10 @@ public class DetailRepairActivity extends BaseActivity{
 		setContentView(R.layout.detail_repair_activity);
 		Intent intent = getIntent();
 		categoryId = intent.getStringExtra("category_id");
+		itemName = getIntent().getStringExtra("item_name");
+		if (itemName != null) {
+			setTitle(itemName);
+		}
 		setRightButtonShown();
 		detailRepairItemsList = new ArrayList<DetailRepairItem>();
 		progressHUD = ProgressHUD.show(this, "载入中", true);
@@ -108,6 +113,7 @@ public class DetailRepairActivity extends BaseActivity{
 			price = parsePrice(detailRepairItemsList.get(arg2).getPrice(), price);
 			intent.putExtra("title", detailRepairItemsList.get(arg2).getTitle());
 			intent.putExtra("price", price);
+			intent.putExtra("from_main_page", 1);
 			startActivity(intent);
 			if (version >= 5) {
 				overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);

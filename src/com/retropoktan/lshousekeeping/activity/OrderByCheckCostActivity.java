@@ -147,7 +147,7 @@ public class OrderByCheckCostActivity extends BaseActivity{
 		bottomGridView.setAdapter(downItemAdapter);
 		topGridView.setAdapter(superItemAdapter);
 		topGridView.setOnItemClickListener(new TopGridViewOnClickListener());
-		bottomGridView.setOnItemClickListener(new TopGridViewOnClickListener());
+		bottomGridView.setOnItemClickListener(new BottomGridViewOnClickListener());
 	}
 	
 	class TopGridViewOnClickListener implements OnItemClickListener{
@@ -157,7 +157,28 @@ public class OrderByCheckCostActivity extends BaseActivity{
 				long arg3) {
 			// TODO Auto-generated method stub
 			Intent intent = new Intent(OrderByCheckCostActivity.this, DetailRepairActivity.class);
-			intent.putExtra("category_id", superItemsList.get(arg2).getSuperItemId());
+			intent.putExtra("category_id", upList.get(arg2).getSuperItemId());
+			intent.putExtra("item_name", upList.get(arg2).getSuperItemName());
+			startActivity(intent);
+			if (version >= 5) {
+				overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
+			}
+			if (requestCode == 1) {
+				OrderByCheckCostActivity.this.finish();
+			}
+		}
+		
+	}
+	
+	class BottomGridViewOnClickListener implements OnItemClickListener{
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+			// TODO Auto-generated method stub
+			Intent intent = new Intent(OrderByCheckCostActivity.this, DetailRepairActivity.class);
+			intent.putExtra("category_id", downList.get(arg2).getSuperItemId());
+			intent.putExtra("item_name", downList.get(arg2).getSuperItemName());
 			startActivity(intent);
 			if (version >= 5) {
 				overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
