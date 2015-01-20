@@ -35,6 +35,7 @@ public class DetailRepairActivity extends BaseActivity{
 	private ProgressHUD progressHUD;
 	private String price;
 	private String itemName;
+	private String picUrl;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -43,6 +44,7 @@ public class DetailRepairActivity extends BaseActivity{
 		Intent intent = getIntent();
 		categoryId = intent.getStringExtra("category_id");
 		itemName = getIntent().getStringExtra("item_name");
+		picUrl = getIntent().getStringExtra("pic_url");
 		if (itemName != null) {
 			setTitle(itemName);
 		}
@@ -88,7 +90,7 @@ public class DetailRepairActivity extends BaseActivity{
 			public void onRequestSuccess(JSONArray jsonArray) {
 				// TODO Auto-generated method stub
 				JSONUtil.parseDetailRepairItemTexts(jsonArray, detailRepairItemsList);
-				detailRepairAdapter = new DetailRepairAdapter(detailRepairItemsList, DetailRepairActivity.this);
+				detailRepairAdapter = new DetailRepairAdapter(detailRepairItemsList, DetailRepairActivity.this, picUrl);
 				detailRepairListView.setAdapter(detailRepairAdapter);
 				detailRepairListView.setOnItemClickListener(new DetailItemOnClickListener());
 				progressHUD.dismiss();

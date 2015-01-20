@@ -1,10 +1,5 @@
 package com.retropoktan.lshousekeeping.activity;
 
-import com.retropoktan.lshousekeeping.R;
-import com.retropoktan.lshousekeeping.application.LSApplication;
-import com.retropoktan.lshousekeeping.dao.DBHelper;
-
-import de.greenrobot.dao.internal.FastCursor;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -12,12 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.retropoktan.lshousekeeping.R;
+import com.retropoktan.lshousekeeping.application.LSApplication;
+import com.retropoktan.lshousekeeping.dao.DBHelper;
 
 public abstract class BaseActivity extends Activity implements OnClickListener{
 

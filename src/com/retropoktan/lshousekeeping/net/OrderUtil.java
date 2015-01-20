@@ -1,7 +1,6 @@
 package com.retropoktan.lshousekeeping.net;
 
 import org.apache.http.Header;
-import org.apache.http.entity.StringEntity;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

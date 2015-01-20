@@ -3,13 +3,9 @@ package com.retropoktan.lshousekeeping.net;
 import java.io.File;
 
 import org.apache.http.Header;
-import org.json.JSONArray;
 
-import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.retropoktan.lshousekeeping.application.LSApplication;

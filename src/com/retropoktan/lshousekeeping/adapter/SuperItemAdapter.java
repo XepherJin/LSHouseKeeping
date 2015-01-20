@@ -2,11 +2,6 @@ package com.retropoktan.lshousekeeping.adapter;
 
 import java.util.List;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.retropoktan.lshousekeeping.R;
-import com.retropoktan.lshousekeeping.dao.SuperItem;
-import com.retropoktan.lshousekeeping.view.PriceTextView;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +9,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.retropoktan.lshousekeeping.R;
+import com.retropoktan.lshousekeeping.dao.SuperItem;
 
 public class SuperItemAdapter extends BaseAdapter{
 

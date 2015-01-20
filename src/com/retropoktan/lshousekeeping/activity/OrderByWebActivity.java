@@ -1,8 +1,10 @@
 package com.retropoktan.lshousekeeping.activity;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -85,6 +87,8 @@ public class OrderByWebActivity extends BaseActivity{
 	private String orderId;
 	private String timeStamp;
 	
+	private Calendar calendar;
+	
 	private PriceTextView priceTextView;
 	
 	private float totalPrice;
@@ -112,6 +116,8 @@ public class OrderByWebActivity extends BaseActivity{
 		mBitmapList = new ArrayList<Bitmap>();
 		photoFileList = new ArrayList<File>();
 		cutPhotoUtil = new CutPhotoUtil();
+		calendar = Calendar.getInstance(Locale.CHINA);
+		calendar.setTimeInMillis(System.currentTimeMillis());
 		Intent intent = getIntent();
 		totalPrice = OrderItemCache.getInstance().getPrice();
 		getItem(intent);
@@ -153,6 +159,8 @@ public class OrderByWebActivity extends BaseActivity{
 		phoneEditText = (EditText)findViewById(R.id.phone_in_order_form_edittext);
 		addressEditText = (EditText)findViewById(R.id.address_in_order_form_edittext);
 		chooseTimeTextView = (TextView)findViewById(R.id.time_in_order_form_edittext);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		chooseTimeTextView.setText(simpleDateFormat.format(new Date()));
 		itemTextView = (TextView)findViewById(R.id.repair_item_in_order_form_edittext);
 		priceTextView = (PriceTextView)findViewById(R.id.total_price_textview);
 		priceTextView.setTotalPrice(String.valueOf(totalPrice));
@@ -373,9 +381,7 @@ public class OrderByWebActivity extends BaseActivity{
 	}
 	
 	private void chooseOrderTime() {
-		final Calendar calendar = Calendar.getInstance(Locale.CHINA);
 		final int hour;
-		calendar.setTimeInMillis(System.currentTimeMillis());
 		if (ChooseTimePickerDialog.getRoundedMinute(calendar.get(Calendar.MINUTE) + ChooseTimePickerDialog.TIME_PICKER_INTERVAL) >= 60) {
 			hour = calendar.get(Calendar.HOUR_OF_DAY) + 1;
 		}
@@ -395,11 +401,21 @@ public class OrderByWebActivity extends BaseActivity{
 					public void onTimeSet(TimePicker view, int hourOfDay,
 							int minute) {
 						// TODO Auto-generated method stub
-						if (minute == 0) {
-							chooseTimeTextView.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth + " " + hourOfDay + ":0" + minute);
+						if ((monthOfYear + 1) < 10) {
+							if (minute == 0) {
+								chooseTimeTextView.setText(year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth + " " + hourOfDay + ":0" + minute);
+							}
+							else {
+								chooseTimeTextView.setText(year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth + " " + hourOfDay + ":" + minute);
+							}
 						}
 						else {
-							chooseTimeTextView.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth + " " + hourOfDay + ":" + minute);
+							if (minute == 0) {
+								chooseTimeTextView.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth + " " + hourOfDay + ":0" + minute);
+							}
+							else {
+								chooseTimeTextView.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth + " " + hourOfDay + ":" + minute);
+							}
 						}
 					}
 					
@@ -436,6 +452,7 @@ public class OrderByWebActivity extends BaseActivity{
 				// TODO Auto-generated method stub
 				try {
 					LSApplication.getInstance().setUserPhoneNum(phoneEditText.getText().toString().trim());
+					OrderItemCache.getInstance().setOrderItem("");
 					orderId = jsonObject.getString("appointmentid");
 				} catch (Exception e) {
 					// TODO: handle exception

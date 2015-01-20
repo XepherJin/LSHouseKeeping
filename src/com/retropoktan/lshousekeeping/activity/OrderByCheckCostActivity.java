@@ -1,7 +1,6 @@
 package com.retropoktan.lshousekeeping.activity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -11,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -159,6 +157,7 @@ public class OrderByCheckCostActivity extends BaseActivity{
 			Intent intent = new Intent(OrderByCheckCostActivity.this, DetailRepairActivity.class);
 			intent.putExtra("category_id", upList.get(arg2).getSuperItemId());
 			intent.putExtra("item_name", upList.get(arg2).getSuperItemName());
+			intent.putExtra("pic_url", upList.get(arg2).getSuperItemImageUrl());
 			startActivity(intent);
 			if (version >= 5) {
 				overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
@@ -179,6 +178,7 @@ public class OrderByCheckCostActivity extends BaseActivity{
 			Intent intent = new Intent(OrderByCheckCostActivity.this, DetailRepairActivity.class);
 			intent.putExtra("category_id", downList.get(arg2).getSuperItemId());
 			intent.putExtra("item_name", downList.get(arg2).getSuperItemName());
+			intent.putExtra("pic_url", downList.get(arg2).getSuperItemImageUrl());
 			startActivity(intent);
 			if (version >= 5) {
 				overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);

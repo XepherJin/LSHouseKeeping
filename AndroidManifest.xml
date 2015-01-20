@@ -153,11 +153,11 @@
     <!-- 【必须】 请将YOUR_ACCESS_ID修改为APP的AccessId，“21”开头的10位数字，中间没空格 -->
     <meta-data 
         android:name="XG_V2_ACCESS_ID"
-        android:value="2100080126" />
+        android:value="2100081128" />
     <!-- 【必须】 请将YOUR_ACCESS_KEY修改为APP的AccessKey，“A”开头的12位字符串，中间没空格 -->
     <meta-data 
         android:name="XG_V2_ACCESS_KEY" 
-        android:value="A8UG4E2X71JR" />
+        android:value="AV48E35PK2PW" />
     </application>
     
 </manifest>

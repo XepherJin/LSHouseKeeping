@@ -8,10 +8,6 @@ import org.json.JSONObject;
 
 import com.retropoktan.lshousekeeping.dao.DetailRepairItem;
 
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 public class JSONUtil {
 
 	public static ArrayList<String> parseAdImageViews(JSONArray jsonArray) {
